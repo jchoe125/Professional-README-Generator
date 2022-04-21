@@ -1,6 +1,6 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
-const templateREADME = require('./templateREADME');
+const createREADME = require('./createREADME');
 
 
 // Prompt array to ask the user
@@ -8,7 +8,7 @@ const questions = [
     // Project title
     {
         type: 'input',
-        name: 'Title',
+        name: 'title',
         message: 'What is the title of the app? (Required)',
         validate: titleInput => {
             if (titleInput) {
@@ -22,7 +22,7 @@ const questions = [
     // Description of project
     {
         type: 'input',
-        name: 'Description',
+        name: 'description',
         message: 'Provide a description of the app (Required)',
         validate: descriptionInput => {
             if (descriptionInput) {
@@ -35,7 +35,7 @@ const questions = [
     },
     {
         type: 'input',
-        name: 'Table of Contents',
+        name: 'tableofcontents',
         message: 'Provide a table of contents (Required)',
         validate: descriptionInput => {
             if (descriptionInput) {
@@ -49,7 +49,7 @@ const questions = [
     // Installation instructions
     {
         type: 'input',
-        name: 'Installation',
+        name: 'installation',
         message: 'How do you install your app? (Required)',
         validate: installationInput => {
             if (installationInput) {
@@ -63,7 +63,7 @@ const questions = [
     // Usage info
     {
         type: 'input',
-        name: 'Usage',
+        name: 'usage',
         message: 'Describe the usage of this app (Required)',
         validate: usageInput => {
             if (usageInput) {
@@ -77,7 +77,7 @@ const questions = [
     // License options
     {
         type: 'checkbox',
-        name: 'License',
+        name: 'license',
         message: 'Choose a license for your project (Required)',
         choices: ['Apache', 'MIT', 'Mozilla-Public', 'GNU-General-Public', 'Common-Development-and Distribution', 'None'],
         validate: licenseInput => {
@@ -92,10 +92,10 @@ const questions = [
     // Contribution info
     {
         type: 'input',
-        name: 'Contribution',
+        name: 'contributing',
         message: 'How should people contribute to this app? (Required)',
-        validate: contributionInput => {
-            if (contributionInput) {
+        validate: contributingInput => {
+            if (contributingInput) {
                 return true;
             } else {
                 console.log('You need to provide information on how other developers should contribute to this app in order to continue');
@@ -106,7 +106,7 @@ const questions = [
     // Test instructions 
     {
         type: 'input',
-        name: 'Testing',
+        name: 'testing',
         message: 'How do you test this project? (Required)',
         validate: testingInput => {
             if (testingInput) {
@@ -120,7 +120,7 @@ const questions = [
     // Questions
     {
         type: 'input',
-        name: 'Questions',
+        name: 'github',
         message: 'Enter your GitHub Username (Required)',
         validate: githubInput => {
             if (githubInput) {
@@ -134,7 +134,7 @@ const questions = [
     // Questions
     {
         type: 'input',
-        name: 'Questions',
+        name: 'email',
         message: 'Enter your email address if developers want to reach you with additional questions (Required)',
         validate: emailInput => {
             if (emailInput) {
@@ -148,22 +148,22 @@ const questions = [
 ]
 
 // Function to write README file
-function writeToFile(fileName, data) {
-    fs.writeFile(fileName, data, (err) => {
+function writeToFile(fileName, answers) {
+    fs.writeFile(fileName, answers, (err) => {
         if (err)
             throw err;
-        console.log('Success! Information transferred to the README!')
+        console.log('Success - your README file has been generated')
     });
 };
 
 // Function to initialize app
-function init() {
+function start() {
     inquirer.prompt(questions)
         .then(function(userInput) {
             console.log(userInput)
-            writeToFile("README.md", templateREADME(userInput));
+            writeToFile("README1.md", createREADME(userInput));
         });
 };
 
 // Function call to initialize app
-init();
+start();
