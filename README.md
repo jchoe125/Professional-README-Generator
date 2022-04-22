@@ -57,6 +57,9 @@ In order to run the application, the user must download the NPM Inquirer Package
 ## Video Walkthrough
 ![Video Walkthrough](./Appdemo/Appdemo.gif)
 
+## Screenshots
+![App Screenshot](./Appdemo/README%20screenshot.JPG)
+
 ## Technologies Used
 * JavaScript
 * NPM inquirer
