@@ -68,3 +68,5 @@ MIT license
 ## Questions
 If you have any questions, please send them to my [GitHub profile](https://github.com/jchoe125)
 
+## Submission
+Link to GitHub repository: https://github.com/jchoe125/Professional-README-Generator
